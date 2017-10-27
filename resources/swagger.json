@@ -1,0 +1,121 @@
+{
+  "info": {
+    "title": "HestiaaProject",
+    "version": "0.0.1",
+    "description": "HestiaaProject API"
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Retrieves swagger especification",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Swagger specs"
+          }
+        }
+      }
+    },
+    "/package-management/hello-world": {
+      "get": {
+        "description": "Say hello.",
+        "tags": [
+          "package-management"
+        ],
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The message to display."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "error"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "X went wrong because of Y"
+          }
+        }
+      }
+    },
+    "NotFound": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "error"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "example": {
+              "name": "ResourceNotFoundError",
+              "message": "resource not found"
+            }
+          }
+        }
+      }
+    },
+    "Unauthorized": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "unauthorized"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "example": {
+              "name": "JsonWebTokenError",
+              "message": "invalid token"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": [
+    {
+      "name": "package-management",
+      "description": "Regarding the Package-Management related resources"
+    }
+  ]
+}
