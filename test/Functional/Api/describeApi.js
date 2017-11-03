@@ -23,21 +23,21 @@ function describeApi (name, callable) {
 
   // Set testing environment variables
   // and bootstrap the application server
-  before(function () {
+  before(async () => {
     process.env.NODE_ENV = 'testing'
     process.env.MONGO_DB = `${process.env.MONGO_DB}_test`
-    Bootstrap.init()
+    await Bootstrap.init()
     process.env.PORT = parseInt(process.env.PORT) + 700
     server = Bootstrap.run(express())
   })
 
   // Close http server after tests
-  after(function () {
-    server.close()
+  after(async () => {
+    await server.close()
   })
 
   // Describe provided specs
   describe(`API ${name}`, callable)
-};
+}
 
 module.exports = describeApi

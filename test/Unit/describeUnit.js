@@ -19,11 +19,11 @@ let Bootstrap = require('../../lib/bootstrap')
  */
 function describeUnit (name, callable) {
   // Set testing environment variables
-  before(function () {
+  before(async () => {
     process.env.NODE_ENV = 'testing'
     process.env.MONGO_DB = `${process.env.MONGO_DB}_test`
     process.env.DISABLE_DB = 'true'
-    Bootstrap.init()
+    await Bootstrap.init()
   })
 
   // Describe provided specs

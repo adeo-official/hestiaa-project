@@ -1,0 +1,8 @@
+version: '2'
+services:
+  app:
+    ports:
+      - "3363:3363"
+      - "43363:43363"
+    volumes:
+      - ./:/usr/src/app
