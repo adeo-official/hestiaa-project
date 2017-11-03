@@ -19,19 +19,17 @@ const Bootstrap = require('../../../lib/bootstrap')
  * @param  {function} callable Test function
  */
 function describeApi (name, callable) {
-  var server
-
-  let setup = () => {
-    process.env.NODE_ENV = 'testing'
-    process.env.MONGO_DB = `${process.env.MONGO_DB}_test`
-    Bootstrap.init()
-    process.env.PORT = parseInt(process.env.PORT)+700
-    server = Bootstrap.run(express())
-  }
+  let server
 
   // Set testing environment variables
   // and bootstrap the application server
-  before(setup)
+  before(function () {
+    process.env.NODE_ENV = 'testing'
+    process.env.MONGO_DB = `${process.env.MONGO_DB}_test`
+    Bootstrap.init()
+    process.env.PORT = parseInt(process.env.PORT) + 700
+    server = Bootstrap.run(express())
+  })
 
   // Close http server after tests
   after(function () {
@@ -39,7 +37,6 @@ function describeApi (name, callable) {
   })
 
   // Describe provided specs
-  setup()
   describe(`API ${name}`, callable)
 };
 
