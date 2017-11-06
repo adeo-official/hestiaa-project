@@ -8,7 +8,7 @@ const glob = require('glob')
  * Bootstrap the application (.env, database connection, etc)
  * @see ./lib/bootstrap
  */
-Bootstrap.init()
+Bootstrap.init() // await
 const prompt = `${path.resolve().split(path.sep).pop()} > `
 
 /**

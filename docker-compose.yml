@@ -1,0 +1,25 @@
+version: '2'
+services:
+  app:
+    # Hestiaa
+    build: .
+    ports:
+      - "3363:3363"
+    command: sh -c "yarn install && yarn run serve:dev"
+    environment:
+      - MONGO_HOST
+      - MONGO_USER
+      - MONGO_PASSWORD
+  mongodata: # Mongodb storage container. Run and finishes quickly, used by the container bellow.
+    image: mongo:3.4
+    volumes:
+      - /mnt/sda1/data/mongo/db:/data/db
+    command: --break-mongo
+  mongo: # Main database container
+    image: mongo:3.4
+    volumes_from:
+      - mongodata
+    expose:
+      - "27017-27019"
+      - "28017"
+    command: --smallfiles --rest

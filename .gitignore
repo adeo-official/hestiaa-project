@@ -4,3 +4,4 @@ node_modules
 .env
 !.gitkeep
 npm-debug.log
+resources/swagger.json
