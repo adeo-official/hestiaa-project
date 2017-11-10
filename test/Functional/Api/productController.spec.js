@@ -61,7 +61,7 @@ describeApi('hestiaa/product', () => {
           // database
           let updatedBox = await Box.findOne({_id: ObjectId(boxId)})
           expect(updatedBox.get('products').length).to.be(initialCount + 1)
-          let createdProduct = updatedBox.getEmbeded('products', json.data._id)
+          let createdProduct = updatedBox.getEmbedded('products', json.data._id)
           expect(createdProduct.get('name')).to.be(payload.name)
           expect(createdProduct.get('type')).to.be(payload.type)
 
@@ -105,7 +105,7 @@ describeApi('hestiaa/product', () => {
           expect(json.data.type).to.be(payload.type)
 
           // database
-          let updatedProduct = (await Box.findOne({_id: ObjectId(boxId)})).getEmbeded('products', productId)
+          let updatedProduct = (await Box.findOne({_id: ObjectId(boxId)})).getEmbedded('products', productId)
           expect(updatedProduct.get('name')).to.be(payload.name)
           expect(updatedProduct.get('type')).to.be(payload.type)
 
