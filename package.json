@@ -1,5 +1,8 @@
 {
   "main": "server.js",
+  "engines": {
+    "node": "8.1.4"
+  },
   "scripts": {
     "repl": "node repl.js",
     "serve": "node server.js",
