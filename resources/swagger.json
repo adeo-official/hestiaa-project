@@ -1,0 +1,646 @@
+{
+  "info": {
+    "title": "HestiaaProject",
+    "version": "0.0.1",
+    "description": "HestiaaProject API"
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/hestiaa/box": {
+      "post": {
+        "tags": [
+          "hestiaa"
+        ],
+        "description": "Create new `Box` from base information.",
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Box"
+            },
+            "description": "The `Box` entity to create."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Box` created successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "$ref": "#/definitions/Box"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "description": "An empty array (always when success).",
+                  "example": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data.\nUnexpected fields.\n",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "hestiaa"
+        ],
+        "description": "Retrieves the list of all `Box`s.",
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of `Box`s.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Box"
+                  }
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "description": "An empty array (always when success).",
+                  "example": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hestiaa/box/{id}": {
+      "get": {
+        "tags": [
+          "hestiaa"
+        ],
+        "description": "Find `Box`s by ID.",
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "Id of the `Box` to find."
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The found `Box`.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "$ref": "#/definitions/Box"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "description": "An empty array (always when success).",
+                  "example": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Non-existent `Box`.",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "hestiaa"
+        ],
+        "description": "Update base fields of a `Box`.\n**Important:** Embedded fields are not accepted. You have to use dedicated sub-webservices.\n",
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "Id of the `Box` to update."
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Box"
+            },
+            "description": "The `Box` entity to update."
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Box` updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "$ref": "#/definitions/Box"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "description": "An empty array (always when success).",
+                  "example": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data.\nUnexpected fields.\n",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Non-existent `Box`.",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "hestiaa"
+        ],
+        "description": "Deletes an existing `Box`",
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "Id of the `Box` to delete"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Box` deleted successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "example": null
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "description": "An empty array (always when success).",
+                  "example": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Non-existent `Box`.",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "Retrieves swagger especification",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Swagger specs"
+          }
+        }
+      }
+    },
+    "/hestiaa/box/{boxId}/product": {
+      "post": {
+        "description": "Create new `Product` from base information.",
+        "tags": [
+          "hestiaa"
+        ],
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boxId",
+            "description": "Id of the `Box` in which the `Product` is to be added.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The `Product` entity to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Product` created successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "$ref": "#/definitions/Product"
+                },
+                "errors": {
+                  "description": "An empty array (always when success).",
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "example": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/hestiaa/box/{boxId}/product/{id}": {
+      "put": {
+        "description": "Updates an existing `Product`, in parent `Box`.",
+        "tags": [
+          "hestiaa"
+        ],
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boxId",
+            "description": "Id of the `Box` in which the `Product` is to be updated.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the `Product` to update.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The `Product` entity to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Product` updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "$ref": "#/definitions/Product"
+                },
+                "errors": {
+                  "description": "An empty array (always when success).",
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "example": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Non-existent `Box` or `Product`.",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes an existing `Product`, in parent `Box`.",
+        "tags": [
+          "hestiaa"
+        ],
+        "security": [
+          {
+            "APIToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boxId",
+            "type": "string",
+            "required": true,
+            "description": "Id of the `Box` in which the `Product` is to be deleted."
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "Id of the `Product` to delete."
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Product` deleted successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "data": {
+                  "example": null
+                },
+                "errors": {
+                  "description": "An empty array (always when success).",
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "example": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Non-existent `Box` or `Product`.",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "error"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "X went wrong because of Y"
+          }
+        }
+      }
+    },
+    "NotFound": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "error"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "example": {
+              "name": "ResourceNotFoundError",
+              "message": "resource not found"
+            }
+          }
+        }
+      }
+    },
+    "Unauthorized": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "unauthorized"
+        },
+        "data": {
+          "description": "Always \"null\" value.",
+          "example": null
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "example": {
+              "name": "JsonWebTokenError",
+              "message": "invalid token"
+            }
+          }
+        }
+      }
+    },
+    "Box": {
+      "type": "object",
+      "required": [
+        "title"
+      ],
+      "properties": {
+        "_id": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier (`ObjectId`).\nGenerated automatically during creation.\n",
+          "example": "507f1f77bcf86cd799439011"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of box.",
+          "example": "Utils pack for dummies"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "_id": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier (`ObjectId`).\nGenerated automatically during creation.\n",
+          "example": "507f1f77bcf86cd799439011"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of product.",
+          "example": "Hand saw"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "other",
+            "tools",
+            "materials",
+            "decoration"
+          ],
+          "description": "The type of product.",
+          "example": "tools"
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand of product.",
+          "example": "Dexter"
+        }
+      }
+    }
+  },
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": [
+    {
+      "name": "hestiaa",
+      "description": "API of **hestiaa** project."
+    }
+  ]
+}
