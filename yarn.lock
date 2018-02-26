@@ -1946,7 +1946,7 @@ he@1.1.1:
 
 "hestiaa@git://github.com/pinguet62/hestiaa.git#validator-polymorphism":
   version "0.0.1"
-  resolved "git://github.com/pinguet62/hestiaa.git#8ed31216082cf2dfbc9fa000076f034f4bad9370"
+  resolved "git://github.com/pinguet62/hestiaa.git#7e9a1c91c8faad7c44fa99da9d29aed92825ddba"
   dependencies:
     body-parser "^1.18.2"
     cls-hooked "^4.2.2"
